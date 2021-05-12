@@ -89,6 +89,9 @@ class ItemBase(models.Model):
     class Meta:
         abstract = True
 
+    verbose_name = _("tagged item")
+    verbose_name_plural = _("tagged items")
+
     @classmethod
     def tag_model(cls):
         field = cls._meta.get_field("tag")
@@ -172,8 +175,8 @@ class GenericUUIDTaggedItemBase(CommonGenericTaggedItemBase):
 
 class TaggedItem(GenericTaggedItemBase, TaggedItemBase):
     class Meta:
-        verbose_name = _("tagged item")
-        verbose_name_plural = _("tagged items")
+        # verbose_name = _("tagged item")
+        # verbose_name_plural = _("tagged items")
         app_label = "taggit"
         index_together = [["content_type", "object_id"]]
         unique_together = [["content_type", "object_id", "tag"]]
